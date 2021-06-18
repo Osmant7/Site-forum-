@@ -1,0 +1,193 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StaffController!
+{% endblock %}
+
+{% block body %}
+ <section>
+      <div class="cercle"></div>
+      <div class="content">
+        <div class="textBox">
+          <h2>Domain Expansion <span>STAFF</span></h2>
+          <p>
+            Domain Expansion est un site internet sur le thème Manga/Anime pour un tas de Otakus. Nos principaux sujets sont
+            tous sur les séries Manga/Anime.. cependant nous avons d’autres
+            sujets amusants aussi. Nous sommes une communauté très accueillante
+            pour tous les autres utilisateurs de notre site Domain Expansion.
+        </div>
+        <div class="imgBox">
+          <img src="{{ asset('asset/img/ayanokoji.png')}}" class="starbucks" />
+        </div>
+      </div>
+      <ul class="thumb">
+        <li>
+          <img
+            src="{{ asset('asset/img/ayanokoji.png')}}"
+            onclick="imgSlider('{{ asset('asset/img/ayanokoji.png')}}'); changeCercleColor('#6f87ff')"
+          />
+        </li>
+        <li>
+          <img
+            src="{{ asset('asset/img/mikey.png')}}"
+            onclick="imgSlider('{{ asset('asset/img/mikey.png')}}'); changeCercleColor('#e51e2a')"
+          />
+        </li>
+        <li>
+          <img
+            src="{{ asset('asset/img/kamesenin.png')}}"
+            onclick="imgSlider('{{ asset('asset/img/kamesenin.png')}}'); changeCercleColor('#D8BFD8')"
+          />
+        </li>
+      </ul>
+    </section>
+
+	<script type="text/javascript">
+      function imgSlider(anything) {
+        document.querySelector(".starbucks").src = anything;
+      }
+      function changeCercleColor(color) {
+        const cercle = document.querySelector(".cercle");
+        cercle.style.background = color;
+      }
+	</script>
+
+<style>
+
+section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5))
+
+}
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logo {
+  position: relative;
+  min-width: 80px;
+}
+header ul {
+  position: relative;
+  display: flex;
+}
+header ul li {
+  list-style: none;
+}
+header ul li a {
+  display: inline-block;
+  color: #fff;
+  font-weight: 400;
+  margin-left: 40px;
+  text-decoration: none;
+}
+.content {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content .textBox {
+  position: relative;
+  max-width: 600px;
+}
+.content .textBox h2 {
+  color: #fff;
+  font-size: 4em;
+  line-height: 1.4em;
+  font-weight: 500;
+}
+.content .textBox h2 span {
+  color: #e51e2a;
+  font-size: 1.2em;
+  font-weight: 900;
+}
+.content .textBox p {
+  color: #fff;
+}
+.content .textBox a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background: #e51e2a;
+  color: #fff;
+  border-radius: 40px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.content .imgBox {
+  width: 600px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50px;
+  margin-top: 50px;
+}
+.content .imgBox img {
+  max-width: 340px;
+}
+.thumb {
+  position: absolute;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+  display: flex;
+}
+.thumb li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  cursor: pointer;
+}
+.thumb li:hover {
+  transform: translateY(-15px);
+}
+
+.thumb li img {
+  max-width: 60px;
+  /* border-style: inset; */
+}
+.sci {
+  position: relative;
+  top: 50px;
+  width: 50px;
+  transform: translateY(-50px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* Les reseaux sociaux */
+.sci li {
+  list-style: none;
+}
+.sci li a {
+  display: inline-block;
+  margin: 5px 0;
+  transform: scale(0.6);
+  filter: invert(1);
+}
+/* Cercle Vert a droite */
+.cercle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #6f87ff;
+  clip-path: circle(600px at right 800px);
+}
+</style>
+{% endblock %}

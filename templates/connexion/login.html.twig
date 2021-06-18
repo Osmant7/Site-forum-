@@ -1,0 +1,118 @@
+{% block body %}
+
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url("https://www.icegif.com/wp-content/uploads/tanjiro-kamado-icegif-3.gif");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .container {
+        position: relative;
+        display: flex;
+        width: 800px;
+        height: 400px;
+        margin: 20px;
+    }
+    .fondbleu .box {
+        position: relative;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .fondbleu .box h2 {
+        color: #fff;
+        font-size: 1.2em;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .fondbleu .box button {
+        cursor: pointer;
+        padding: 10px 20px;
+        background: linear-gradient(0.25turn, #eeaeca, #94bbe9);
+        font-size: 500;
+        border: none;
+    }
+    .formBx {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(0.25turn, #eeaeca, #94bbe9);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 45pc rgba(0,0,0,0.25);
+        transition: 0.5s ease-in-out;
+        overflow: hidden;
+		opacity: 0.9;
+    }
+    .formBx.active {
+        left: 50%;
+    }
+    .formBx .form {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        padding: 50px;
+        transition: 0.5s;
+    }
+    .formBx .form form {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+    }
+    .formBx .form form h3 {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+    .formBx .form form input {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 10px;
+        outline: none;
+        font-size: 16px;
+        border: 1px solid #333;
+    }
+    .formBx .form form input[type="submit"] {
+        background: #3232;
+        border: none;
+        background: #fff;
+        max-width: 100px;
+        cursor: pointer;
+    }
+    .formBx .form form .forgot {
+        color: #333
+    }
+</style>
+
+    <div class="container">
+        <div class="formBx">
+        <div class="form signinForm">
+            <form action="{{ path('security_login') }}" method="POST">
+            <h3>Se connecter</h3>
+                <input type="text" placeholder="Username" required name="_username" type="text" class="form-control">
+                <input type="password" placeholder="Password" required name="_password" type="password" class="form-control">
+                <input type="submit" value="Login">
+                <a href="{{ path('inscription_registration') }}" class="forgot">Créer un compte</a>
+            </form>
+        </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+<h1>Ajoutez un nouveau commentaire</h1>
+<div class="post card">
+  <div class=" card-body">
+{{ form_start(form) }}
+<div class="contenu">
+
+    {{ form_row(form.content, {'label' : 'le contenu', 'attr': {'placeholder': 'Contenu du message...'}})}}
+</div>
+<div class="brochure">
+
+    {{ form_row(form.brochure) }}
+</div>
+    {% if not app.user %}
+    <p>Veuillez vous connectez pour publier un message</p>
+    {% else %}
+    <button type="submit" class="btn btn-success">Ajoutez votre reponse</button>
+    {% endif %}
+{{ form_end(form) }}
+</div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    body {
+        background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5))
+    }
+    .post{
+        width:80%;
+    }
+    .contenu{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .brochure{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    </style>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if forum %}
+<div style="text-align: center;">
+    <h1>{{ forum.title }}</h1>
+</div>
+{% if not app.user %}
+<p>Veuillez vous connectez pour créer un Sujet</p>
+{% else %}
+<a href="{{ path('New_Forum', {'id': forum.id }) }}" class="btn m-3">Créer un sujet</a>
+{% endif %}
+<script>
+    const btn = document.querySelector('.btn');
+    btn.onmousemove = function(e) {
+        const x = e.pageX - btn.offsetLeft;
+        const x = e.pageY - btn.offsetTop;
+
+        btn.style.setProperty('--x', x + 'px');
+        btn.style.setProperty('--y', y + 'px');
+    }
+</script>
+
+
+{% for f in forum.forums %}
+<div class="card m-3">
+    <div class="card-body">
+        <h5>{{ f.title }}</h5>
+        </div>
+        <div style="display:flex;" class="p-2">
+            <h5 class="m-2 text-muted">Ecrit le {{ f.createdAt | date('d/m/Y') }} à {{ f.createdAt | date('H:i') }} </h5>
+            <p class="m-2 text-muted"> écrit par : {{ f.user.username }}</p>
+        </div>
+        <div class="m-2">
+            <a class="btn btn-info" href="{{ path('forums_page', {'id': f.id }) }}">Voir le forum</a>
+
+    {% if app.user %}  
+    {% if not app.user.admin %}
+        {% else %}
+            {% if f.user.admin == null or f.user.admin == 1 %}
+                <a href="{{ path('delete_forums', {'id': f.id}) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                {% else %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<style>
+body {
+    background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5))
+}
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 8px 20px;
+  background: #e51e2a;
+  color: #fff;
+  border-radius: 40px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+</style>
+
+{% endblock %}
+
+

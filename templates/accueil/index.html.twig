@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="main">
+	{% for categorie in categories %}
+    <div class="card">
+            <div class="card-header">
+                <h4>{{ categorie.name }}</h4>
+            </div>
+            {% for souscatego in categorie.souscategories %}
+                <div class="card border-primary mb-3">
+                <div class="card-body text-primary">
+                    <h5 class="card-title text-dark">{{ souscatego.title  }}</h5>
+                    <a href="{{ path('souscategories', {'id': souscatego.id }) }}" class="text-deco"><p class="card-text">{{ souscatego.sujet }}</p></a>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+	{% endfor %}
+</div>
+
+    
+    <style>
+    @media screen  and (max-width: 900px){
+        .main{
+            display: flex;
+            flex-direction: column;
+            max-width: 18rem;
+        }
+
+    }
+     .card{
+            margin-top: 5%;
+            margin-left: 10%;
+            margin-right: 10%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .text-deco {
+            text-decoration: none;
+        }
+        body {
+            /* fallback for old browsers /
+            background: #2929ae;
+
+            / Chrome 10-25, Safari 5.1-6 /
+            background: -webkit-linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5));
+
+            / W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5))
+        }
+        .background {
+            height: 300px;
+            width: 100%;
+            position: relative;
+            z-index: 4;
+        }
+        nav {
+            position: absolute;
+            z-index: 2;
+        }
+        table {
+            display: flex;
+            justify-content: space-around;
+        }
+        .newMessage {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+{% endblock %}
