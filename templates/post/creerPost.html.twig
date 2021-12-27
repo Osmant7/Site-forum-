@@ -3,30 +3,42 @@
 {% block title %}Hello PostController!{% endblock %}
 
 {% block body %}
-<h1>Ajoutez un nouveau commentaire</h1>
-<div class="post card">
-  <div class=" card-body">
-{{ form_start(form) }}
-<div class="contenu">
+<h1 style="margin:15px;">Ajoutez un nouveau commentaire</h1>
+<div class="contenaire">
 
-    {{ form_row(form.content, {'label' : 'le contenu', 'attr': {'placeholder': 'Contenu du message...'}})}}
-</div>
-<div class="brochure">
+    <div class="post card">
+        <div class=" card-body">
+        {{ form_start(form) }}
+            <div class="contenu">
 
-    {{ form_row(form.brochure) }}
-</div>
-    {% if not app.user %}
-    <p>Veuillez vous connectez pour publier un message</p>
-    {% else %}
-    <button type="submit" class="btn btn-success">Ajoutez votre reponse</button>
-    {% endif %}
-{{ form_end(form) }}
-</div>
+                {{ form_row(form.content, {'label' : 'le contenu', 'attr': {'placeholder': 'Contenu du message...'}})}}
+            </div>
+                <div class="brochure">
+
+                    {{ form_row(form.brochure) }}
+                </div>
+                    {% if not app.user %}
+                        <p>Veuillez vous connectez pour publier un message</p>
+                    {% else %}
+                        <button type="submit" class="btnAjoutez">Ajouter votre réponse</button>
+                    {% endif %}
+        {{ form_end(form) }}
+        </div>
+    </div>
+
 </div>
 {% endblock %}
 
 {% block stylesheets %}
     <style>
+
+    .contenaire{
+        
+        display:flex;
+        justify-content:center;
+        margin-top:100px;
+    }
+
     body {
         background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5))
     }
@@ -40,6 +52,21 @@
     .brochure{
         width: 100%;
         margin-bottom: 20px;
+    }
+
+    .btnAjoutez{
+        background: #0f93ff;
+        margin-top: 20px;
+        padding: 8px 20px;
+        color:whitesmoke;
+        border:none;
+        border-radius: 10px;
+        font-weight: 500;
+    }
+
+    .btnAjoutez:hover{
+        background: #d647ae;
+        color:whitesmoke;
     }
     </style>
 {% endblock %}

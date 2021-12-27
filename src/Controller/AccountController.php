@@ -30,6 +30,13 @@ class AccountController extends AbstractController {
             $user->setPassword($hash);
             $manager->persist($user);
             $manager->flush();
+
+            
+            $this->addFlash(
+                'info',
+                'Votre compte a été crée avec succès !'
+            );
+
             return $this->redirectToRoute('security_login');
         }
 
@@ -60,9 +67,37 @@ class AccountController extends AbstractController {
         ]);
     }
 
-    // public function Users() {
-    //     $rep = $this->getDoctrine()->getRepository(User::class);
-    //     $theUser = $rep->findAll();
-    // }
+    /**
+     * @Route("/comptesToStaffs", name="Accounts")
+     */ 
+     public function Allaccounts(): Response {
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $accounts = $repository->findAll();
+
+        return $this->render("Comptes/index.html.twig", [
+            "comptes" => $accounts
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/deleteAccount/{id}", name="deleteAccounts")
+     */ 
+     public function deleteAccount(int $id): Response {
+         // On utilise l'entity manager pour supprimer le compte
+        $utilisateur = $this->getDoctrine()
+        ->getRepository(User::class)
+        ->find($id);
+
+        $delete = $this->getDoctrine()->getManager();
+        $delete->remove($utilisateur);
+        $delete->flush();
+
+        //redirige l'utilisateur vers la page d'accueil
+
+        return $this->redirectToRoute("Accounts");
+
+    }
 
 }

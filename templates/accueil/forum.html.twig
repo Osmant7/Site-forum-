@@ -7,7 +7,7 @@
     <h1>{{ forum.title }}</h1>
 </div>
 {% if not app.user %}
-<p>Veuillez vous connectez pour créer un Sujet</p>
+<p style="margin-left:20px;">Veuillez vous connectez pour créer un Sujet</p>
 {% else %}
 <a href="{{ path('New_Forum', {'id': forum.id }) }}" class="btn m-3">Créer un sujet</a>
 {% endif %}
@@ -33,7 +33,7 @@
             <p class="m-2 text-muted"> écrit par : {{ f.user.username }}</p>
         </div>
         <div class="m-2">
-            <a class="btn btn-info" href="{{ path('forums_page', {'id': f.id }) }}">Voir le forum</a>
+            <a class="btn btn-success" href="{{ path('forums_page', {'id': f.id }) }}">Voir le forum</a>
 
     {% if app.user %}  
     {% if not app.user.admin %}
@@ -51,15 +51,17 @@
 {% endif %}
 
 
+{% block stylesheets %}
 <style>
 body {
-    background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5))
+    background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5));
+    
 }
 .btn {
   display: inline-block;
   margin-top: 20px;
   padding: 8px 20px;
-  background: #e51e2a;
+  background: #ed931c;
   color: #fff;
   border-radius: 40px;
   font-weight: 500;
@@ -67,7 +69,7 @@ body {
   text-decoration: none;
 }
 </style>
-
+{% endblock %}
 {% endblock %}
 
 

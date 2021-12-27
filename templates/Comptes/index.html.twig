@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block stylesheets %}
+
+<style>
+
+    body {
+            /* fallback for old browsers /
+            background: #2929ae;
+
+            / Chrome 10-25, Safari 5.1-6 /
+            background: -webkit-linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5));
+
+            / W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(41, 41, 174, 0.5), rgba(90, 30, 69, 0.5))
+        }
+
+        .containerTable{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin:15px;
+        }
+
+    .table{
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius:5px;
+        width:80%;
+        background-color:whitesmoke;
+    }
+
+    .fa-trash-alt{
+        color:red;
+        font-size:24px;
+    }
+
+    .infosBox{
+        width:100px;
+        text-align:center;
+    }
+</style>
+
+{% endblock %}
+
+
+
+{% block body %}
+
+<div class="containerTable">
+
+    <div class="table">
+
+        <div>
+            <h4 style="margin:5px;">Gérer les utilisateurs</h4>
+        </div>
+        <div style="display:flex;justify-content:space-around;margin:7px;">
+            <div>
+                <p style="font-size:24px;">Nom d'utilisateur</p>
+            </div>
+
+            <div>
+                <p style="font-size:24px;">Email</p>
+            </div>
+
+            <div>
+                <p style="font-size:24px;">Admin</p>
+            </div>
+
+            <div>
+                <p style="font-size:24px;">Supprimer</p>
+            </div>
+        </div>
+
+
+        {% for c in comptes %}
+
+            <div style="border:1px solid #9266ad;display:flex;justify-content:space-around; margin:7px;border-radius:5px; height:40px;align-items:center;">
+
+                <div class="infosBox">
+                    {{ c.username }}
+                </div>
+
+                <div class="infosBox">
+                    {{ c.email }}
+                </div>
+
+                <div class="infosBox">
+                    {{ c.admin }}
+                </div>
+
+                <div class="infosBox">
+                    {% if c.admin == 1 %}
+                    <i class="fas fa-exclamation-circle"></i>
+                    {% else %}
+                    <a href="{{ path('deleteAccounts', {'id': c.id}) }}" title="bannir le compte"><i class="fas fa-trash-alt"></i></a>
+                    {% endif %}
+                </div>
+        
+        
+            </div>
+
+        {% endfor %}
+
+    
+    </div>
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}
