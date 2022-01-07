@@ -68,7 +68,7 @@ class AccountController extends AbstractController {
     }
 
     /**
-     * @Route("/comptesToStaffs", name="Accounts")
+     * @Route("/adminDECPTSTAFFS12456", name="Accounts")
      */ 
      public function Allaccounts(): Response {
         $repository = $this->getDoctrine()->getRepository(User::class);

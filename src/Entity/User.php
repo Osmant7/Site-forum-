@@ -18,6 +18,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * fields={"email"},
  * message="l'email que vous avez indiqué est déjà utilisé"
  * )
+ * @UniqueEntity(
+ * fields={"username"},
+ * message="Le nom que vous avez indiqué est déjà utilisé"
+ * )
  */
 class User implements UserInterface{
     /**
@@ -31,6 +35,11 @@ class User implements UserInterface{
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $admin;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", unique=true)
@@ -141,9 +150,6 @@ class User implements UserInterface{
 
     public function getSalt() {}
 
-    public function getRoles() {
-        return ['ROLE_USER'];
-    }
 
     public function getUserIdentifier() {
         return $this->username;
@@ -177,6 +183,29 @@ class User implements UserInterface{
     public function setForums($forums)
     {
         $this->forums = $forums;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of roles
+     */ 
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     * Set the value of roles
+     *
+     * @return  self
+     */ 
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
